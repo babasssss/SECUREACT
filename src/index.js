@@ -22,6 +22,7 @@ connect()
 
 // L'ensemble de nos routes
 app.use('/users', require('./routes/users'))
+app.use('/customers', require('./routes/customer'))
 
 app.get('/', (req, res) => {
   res.send("Bienvenu sur l'API SECUREACT!")

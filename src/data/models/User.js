@@ -21,7 +21,6 @@ const userSchema = new Schema({
     type: String,
     required: true
   }
-  // TODO : ADD ID DISHES / one or more
 
 }, { timestamps: true })
 
