@@ -1,9 +1,12 @@
 const User = require('../data/models/User')
 
+// Visualiser tous les utilisateurs
 const getUsers = async () => {
   const users = await User.find().select('-password')
   return users
 }
+
+// Créer un utilisateur
 const createUser = async (user) => {
   // Vérification des données
   if (!user.email || !user.password || !user.firstName || !user.lastName || !user.phone) {
@@ -30,7 +33,17 @@ const createUser = async (user) => {
   return savedUserObject
 }
 
+// Supprimer un utilisateur via l'ID
+const deleteUserById = async (id) => {
+  if (!id) {
+    throw new Error('missing data')
+  }
+  // await File.remove({ user: id }).exec()
+  // TODO : supprimer le fichier physiquement
+  await User.findByIdAndDelete(id)
+}
 module.exports = {
   getUsers,
-  createUser
+  createUser,
+  deleteUserById
 }
