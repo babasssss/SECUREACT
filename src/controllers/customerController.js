@@ -8,26 +8,27 @@ const getCustomerById = async (customerId) => {
 
 // Créer un client
 const createCustumer = async (customer) => {
+  console.log(customer)
   // Vérification des données
   // console.log(customer)
-  if (!customer.firstName) {
+  if (!customer.firstName || !customer.lastName) {
     throw new Error('missing data')
   }
 
   // création tuple custumer
   const _customer = new Customer({
-    firstName: customer.firstName
-    // lastName: customer.lastName,
-    // email: customer.email,
-    // phone: customer.phone,
-    // customerType: customer.customerType
-    // address: {
-    //   street: customer.address.street,
-    //   postalCode: customer.address.postalCode,
-    //   city: customer.address.city,
-    //   country: customer.address.country
-    // },
-    // user: customer.user
+    firstName: customer.firstName,
+    lastName: customer.lastName,
+    email: customer.email,
+    phone: customer.phone,
+    customerType: customer.customerType,
+    address: {
+      street: customer.address.street,
+      postalCode: customer.address.postalCode,
+      city: customer.address.city,
+      country: customer.address.country
+    },
+    user: customer.user
   })
 
   // Enregistrement du tuple
@@ -39,17 +40,21 @@ const createCustumer = async (customer) => {
   return savedUserObject
 }
 
-// Supprimer un utilisateur via l'ID
-// const deleteUserById = async (id) => {
-//   if (!id) {
-//     throw new Error('missing data')
-//   }
-//   // await File.remove({ user: id }).exec()
-//   // TODO : supprimer le fichier physiquement
-//   await User.findByIdAndDelete(id)
-// }
+// Supprimer un customer via son ID et l'ID user
+const deleteCustomerByIdUser = async (idUser, idCustomer) => {
+  if (!idUser || !idCustomer) {
+    throw new Error('missing data')
+  }
+
+  const customer = await Customer.findOne({ _id: idCustomer, user: idUser })
+  if (!customer) {
+    throw new Error('Customer not found')
+  }
+
+  await Customer.findByIdAndDelete(idCustomer)
+}
 module.exports = {
   createCustumer,
-  getCustomerById
-
+  getCustomerById,
+  deleteCustomerByIdUser
 }
