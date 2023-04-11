@@ -45,8 +45,8 @@ const customerSchema = new Schema({
   },
   // Attribution du client(customer) à un seul et unique utilisateur(users)
   user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
     required: true
   }
 

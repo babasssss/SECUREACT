@@ -20,6 +20,10 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  customer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'customers'
   }
 
 }, { timestamps: true })

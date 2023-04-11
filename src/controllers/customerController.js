@@ -11,7 +11,7 @@ const createCustumer = async (customer) => {
   console.log(customer)
   // Vérification des données
   // console.log(customer)
-  if (!customer.firstName || !customer.lastName) {
+  if (!customer.firstName || !customer.lastName || !customer.email || !customer.phone) {
     throw new Error('missing data')
   }
 
