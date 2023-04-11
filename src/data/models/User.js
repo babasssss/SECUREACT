@@ -21,10 +21,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  customer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'customers'
-  }
+  customer: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Customer'
+  }]
 
 }, { timestamps: true })
 
