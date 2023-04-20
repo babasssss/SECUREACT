@@ -25,11 +25,10 @@ router.route('/')
   .post(async (req, res) => {
     try {
     // on recuper le client créer
-      console.log(req.body)
+      // console.log(req.body)
       const createdCustomer = await createCustumer(req.body)
       return res.send(createdCustomer)
     } catch (error) {
-      // console.log('test')
       return res.status(500).send(error)
     }
   })
