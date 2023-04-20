@@ -1,4 +1,5 @@
 const Customer = require('../data/models/Customer')
+const User = require('../data/models/User')
 
 // Visualiser tous les clients
 const getCustomerById = async (customerId) => {
@@ -32,6 +33,12 @@ const createCustumer = async (customer) => {
 
   // Enregistrement du tuple
   const savedCustomer = await _customer.save()
+  // console.log(savedCustomer)
+  if (savedCustomer) {
+    await User.findByIdAndUpdate(customer.user,
+      { $push: { customer: savedCustomer._id } },
+      { new: true, useFindAndModify: false })
+  }
   // -Sécurité-
   const savedUserObject = savedCustomer.toObject()
 
