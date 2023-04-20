@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const User = require('./User')
 const { Schema } = mongoose
 
 const customerSchema = new Schema({
@@ -47,7 +46,7 @@ const customerSchema = new Schema({
   // Attribution du client(customer) à un seul et unique utilisateur(users)
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'users'
     // required: true
   }
 

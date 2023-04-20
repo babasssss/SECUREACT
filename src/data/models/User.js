@@ -23,7 +23,7 @@ const userSchema = new Schema({
   },
   customer: [{
     type: Schema.Types.ObjectId,
-    ref: 'Customer'
+    ref: 'customers'
   }]
 
 }, { timestamps: true })
