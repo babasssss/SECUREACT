@@ -57,8 +57,12 @@ const deleteCustomerByIdUser = async (idUser, idCustomer) => {
     throw new Error('Customer not found')
   }
 
+  // Supprimer l'id du client dans le tableau "customer" de l'utilisateur
+  await User.findByIdAndUpdate(idUser, { $pull: { customer: idCustomer } })
+
   await Customer.findByIdAndDelete(idCustomer)
 }
+
 module.exports = {
   createCustumer,
   getCustomerById,
