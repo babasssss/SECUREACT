@@ -1,3 +1,4 @@
+const Customer = require('../data/models/Customer')
 const User = require('../data/models/User')
 
 // Visualiser tous les utilisateurs
@@ -38,10 +39,21 @@ const deleteUserById = async (id) => {
   if (!id) {
     throw new Error('missing data')
   }
-  // await File.remove({ user: id }).exec()
-  // TODO : supprimer le fichier physiquement
+
+  // Trouver l'utilisateur à supprimer
+  const user = await User.findById(id)
+
+  // Trouver tous les clients associés à l'utilisateur
+  const customers = await Customer.find({ user: user._id })
+
+  // Supprimer tous les clients associés à l'utilisateur
+  for (let i = 0; i < customers.length; i++) {
+    await Customer.deleteOne({ _id: customers[i]._id })
+  }
+
   await User.findByIdAndDelete(id)
 }
+
 module.exports = {
   getUsers,
   createUser,

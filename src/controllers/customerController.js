@@ -31,9 +31,9 @@ const createCustumer = async (customer) => {
     user: customer.user
   })
 
-  // Enregistrement du tuple
+  // Enregistrem  ent du tuple
   const savedCustomer = await _customer.save()
-  // console.log(savedCustomer)
+  console.log(savedCustomer)
   if (savedCustomer) {
     await User.findByIdAndUpdate(customer.user,
       { $push: { customer: savedCustomer._id } },
