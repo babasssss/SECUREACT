@@ -20,10 +20,13 @@ app.use(cors())
 const connect = require('./data/helpers/db')
 connect()
 
-// L'ensemble de nos routes
+// L'ensembles de nos routes
 app.use('/users', require('./routes/users'))
 app.use('/customers', require('./routes/customer'))
+app.use('/auth', require('./routes/auth'))
+app.use('/protected', require('./routes/protected'))
 
+// Route initiale
 app.get('/', (req, res) => {
   res.send("Bienvenu sur l'API SECUREACT!")
 })
