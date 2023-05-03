@@ -1,16 +1,17 @@
 const { getTaxeById, createTaxe, deleteTaxe } = require('../../controllers/taxeController')
 
 const router = require('express').Router()
-// const withAuth = require('../../middlewares/auth')
+const withAuth = require('../../middlewares/auth')
 
 router.route('/:id')
 // Récupérer la liste la taxe par id client
-  .get(async (req, res) => {
+  .get(withAuth, async (req, res) => {
     const custumers = await getTaxeById(req.params.id)
     return res.send(custumers)
   })
+router.route('/')
   // Création d'une taxe
-  .post(async (req, res) => {
+  .post(withAuth, async (req, res) => {
     try {
       // on recuper la taxe créer
       const createdTaxe = await createTaxe(req.body)
@@ -19,15 +20,17 @@ router.route('/:id')
       return res.status(500).send(error)
     }
   })
-// Suppression d'une taxe par son id
-  .delete(async (req, res) => {
+
+router.route('/:idTaxes/:idUser')
+// Suppression d'une taxe par son iduser
+  .delete(withAuth, async (req, res) => {
     try {
       // On supprime la taxe
-      const deletedTaxe = await deleteTaxe(req.params.id)
-      return res.send(deletedTaxe)
+      await deleteTaxe(req.params.idTaxes, req.params.idUser)
+      return res.send(`La taxe id : ${req.params.idTaxes} a été supprimer de l'user id :${req.params.idUser}  ! `)
     } catch (error) {
+      console.error(error)
       return res.status(500).send(error)
     }
   })
-
 module.exports = router

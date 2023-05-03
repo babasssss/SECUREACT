@@ -29,6 +29,10 @@ const userSchema = new Schema({
   taxes: [{
     type: Schema.Types.ObjectId,
     ref: 'taxes'
+  }],
+  units: [{
+    type: Schema.Types.ObjectId,
+    ref: 'units'
   }]
 
 }, { timestamps: true })

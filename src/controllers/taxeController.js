@@ -29,6 +29,12 @@ const createTaxe = async (taxe) => {
       { $push: { taxes: existingTaxe._id } },
       { new: true, useFindAndModify: false }
     )
+    // Associer l'utilisateur à la taxe
+    await Taxe.findByIdAndUpdate(
+      existingTaxe._id,
+      { $push: { users: taxe.users } },
+      { new: true, useFindAndModify: false }
+    )
 
     // -Sécurité-
     const existingTaxeObject = existingTaxe.toObject()
@@ -60,33 +66,36 @@ const createTaxe = async (taxe) => {
   return savedTaxeObject
 }
 
-const deleteTaxe = async (taxeId) => {
-  // Trouver la taxe à supprimer
-  // const taxeToDelete = await Taxe.findById(taxeId)
+const deleteTaxe = async (taxeId, userId) => {
+  // Vérifier si la taxe existe
+  const existingTaxe = await Taxe.findById(taxeId)
+  if (!existingTaxe) {
+    throw new Error('taxe not found')
+  }
 
-  // Vérifier si la taxe appartient à plusieurs user
-  const userCount = await User.countDocuments({ taxes: taxeId })
+  // Retirer l'ID de la taxe de l'utilisateur connecté
+  await User.findByIdAndUpdate(
+    userId,
+    { $pull: { taxes: taxeId } },
+    { new: true, useFindAndModify: false }
+  )
 
-  if (userCount > 1) {
-    // La taxe appartient à plusieurs users, supprimer la référence de taxe dans les documents User
-    await User.updateMany(
-      { taxes: taxeId },
-      { $pull: { taxes: taxeId } },
-      { useFindAndModify: false }
-    )
+  // Retirer l'ID  de l'utilisateur connecté  de la taxe
+  await Taxe.findByIdAndUpdate(
+    taxeId,
+    { $pull: { users: userId } },
+    { new: true, useFindAndModify: false }
+  )
+
+  // Vérifier si la taxe est associée à aucun utilisateur
+  if (existingTaxe.users.length === 0) {
+    await existingTaxe.delete()
+    // -Sécurité-
+    const existingTaxeObject = existingTaxe.toObject()
+    // Retourner les informations de la taxe supprimée
+    return existingTaxeObject
   } else {
-    // La taxe appartient à un seul utilisateur, supprimer la taxe et mettre à jour le document User
-    const deletedTaxe = await Taxe.findByIdAndDelete(taxeId)
-
-    if (deletedTaxe) {
-      await User.findByIdAndUpdate(
-        deletedTaxe.users,
-        { $pull: { taxes: deletedTaxe._id } },
-        { new: true, useFindAndModify: false }
-      )
-    }
-
-    return deletedTaxe
+    throw new Error('You no longer own the tax! However it is impossible to remove the tax because it is associated with other users')
   }
 }
 
