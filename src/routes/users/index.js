@@ -1,9 +1,10 @@
 const { getUsers, createUser, deleteUserById } = require('../../controllers/usersController')
+const withAuth = require('../../middlewares/auth')
 const router = require('express').Router()
 
 router.route('/')
   // Récupérer la liste des users
-  .get(async (req, res) => { // TODO WITHAUTH
+  .get(withAuth, async (req, res) => { // TODO WITHAUTH
     const users = await getUsers()
     return res.send(users)
   })
