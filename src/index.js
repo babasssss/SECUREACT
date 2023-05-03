@@ -25,6 +25,7 @@ app.use('/users', require('./routes/users'))
 app.use('/customers', require('./routes/customer'))
 app.use('/auth', require('./routes/auth'))
 app.use('/protected', require('./routes/protected'))
+app.use('/taxe', require('./routes/taxe'))
 
 // Route initiale
 app.get('/', (req, res) => {

@@ -22,7 +22,7 @@ const customerSchema = new Schema({
   customerType: {
     type: Number,
     required: true,
-    enum: [0, 1]
+    enum: [0, 1] // Clientprofessionnel [1] ou particulier[0]
   },
   // Coordonnée Client
   address: {
@@ -46,8 +46,8 @@ const customerSchema = new Schema({
   // Attribution du client(customer) à un seul et unique utilisateur(users)
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
-    // required: true
+    ref: 'users',
+    required: true
   }
 
 }, { timestamps: true })

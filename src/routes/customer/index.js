@@ -1,7 +1,7 @@
 const { createCustumer, getCustomerById, deleteCustomerByIdUser } = require('../../controllers/customerController')
 
 const router = require('express').Router()
-const withAuth = require('../../../middlewares/auth')
+const withAuth = require('../../middlewares/auth')
 
 router.route('/:id')
 // Récupérer la liste des clients By users
