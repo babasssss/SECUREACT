@@ -22,7 +22,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  customer: [{
+  customers: [{
     type: Schema.Types.ObjectId,
     ref: 'customers'
   }],
@@ -33,6 +33,10 @@ const userSchema = new Schema({
   units: [{
     type: Schema.Types.ObjectId,
     ref: 'units'
+  }],
+  products: [{
+    type: Schema.Types.ObjectId,
+    ref: 'products'
   }]
 
 }, { timestamps: true })

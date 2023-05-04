@@ -31,16 +31,20 @@ const createCustumer = async (customer) => {
     user: customer.user
   })
 
+  // TODO : Le document users n'est pas mis a jours avec l'id user ???? CHELOU
+  // Association du customer au document user
+  if (customer.user) {
+    await User.findByIdAndUpdate(
+      customer.user,
+      { $push: { customers: customer._id } },
+      { new: true, useFindAndModify: false }
+    )
+  }
+
   // Enregistrement du tuple
   const savedCustomer = await _customer.save()
   // console.log(savedCustomer)
 
-  // On met a jour le tuple user avec l'id Customer
-  if (savedCustomer) {
-    await User.findByIdAndUpdate(customer.user,
-      { $push: { customer: savedCustomer._id } },
-      { new: true, useFindAndModify: false })
-  }
   // -Sécurité-
   const savedUserObject = savedCustomer.toObject()
 
