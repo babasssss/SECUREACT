@@ -22,7 +22,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  customers: [{
+  customer: [{
     type: Schema.Types.ObjectId,
     ref: 'customers'
   }],

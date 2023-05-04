@@ -31,20 +31,21 @@ const createCustumer = async (customer) => {
     user: customer.user
   })
 
-  // TODO : Le document users n'est pas mis a jours avec l'id user ???? CHELOU
-  // Association du customer au document user
+  // Vérification de l'existence de l'user
+  if (customer.user && !(await User.exists({ _id: customer.user }))) {
+    throw new Error('Invalid user reference')
+  }
+  // Association du customer à l'user
   if (customer.user) {
     await User.findByIdAndUpdate(
       customer.user,
-      { $push: { customers: customer._id } },
+      { $push: { customer: _customer._id } },
       { new: true, useFindAndModify: false }
     )
   }
-
   // Enregistrement du tuple
   const savedCustomer = await _customer.save()
   // console.log(savedCustomer)
-
   // -Sécurité-
   const savedUserObject = savedCustomer.toObject()
 

@@ -2,7 +2,6 @@ const Product = require('../data/models/Product')
 const Taxe = require('../data/models/Taxe')
 const Unit = require('../data/models/Unit')
 const User = require('../data/models/User')
-// const User = require('../data/models/User')
 
 // Visualiser touts les produits d'un user
 const getProductById = async (userId) => {
