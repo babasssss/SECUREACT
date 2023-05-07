@@ -1,4 +1,4 @@
-const { createCustumer, getCustomerById, deleteCustomerByIdUser } = require('../../controllers/customerController')
+const { createCustumer, getCustomerById, deleteCustomerByIdUser, updateCustomerById } = require('../../controllers/customerController')
 
 const router = require('express').Router()
 const withAuth = require('../../middlewares/auth')
@@ -8,6 +8,15 @@ router.route('/:id')
   .get(withAuth, async (req, res) => {
     const custumers = await getCustomerById(req.params.id)
     return res.send(custumers)
+  })
+  // Mise a jour du client
+  .patch(async (req, res) => {
+    try {
+      const customerUpdate = await updateCustomerById(req.params.id, req.body)
+      return res.send(customerUpdate)
+    } catch (error) {
+      return res.status(500).send(error)
+    }
   })
 router.route('/:idUser/:idCustomer')
 // Supprimer un client By users By clients

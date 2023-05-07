@@ -70,8 +70,25 @@ const deleteCustomerByIdUser = async (idUser, idCustomer) => {
   await Customer.findByIdAndDelete(idCustomer)
 }
 
+const updateCustomerById = async (id, customer) => {
+  if (!id) {
+    throw new Error('missing data')
+  }
+  if (!customer) {
+    throw new Error('missing customer')
+  }
+
+  // On met à jour du client via la méthode mongoose findByIdAndUpdate
+  const customerUpdate = await Customer.findByIdAndUpdate(id, customer, { new: true })
+
+  const customerObject = customerUpdate.toObject()
+
+  return customerObject
+}
+
 module.exports = {
   createCustumer,
   getCustomerById,
-  deleteCustomerByIdUser
+  deleteCustomerByIdUser,
+  updateCustomerById
 }
