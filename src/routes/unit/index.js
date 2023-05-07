@@ -1,13 +1,22 @@
-const { getUnitById, createUnit, deleteUnit } = require('../../controllers/unitContoller')
+const { getUnitById, createUnit, deleteUnit, updateUnitById } = require('../../controllers/unitContoller')
 
 const router = require('express').Router()
 const withAuth = require('../../middlewares/auth')
 
 router.route('/:id')
-// Récupérer la liste la l'unité par id client
+  // Récupérer la liste la l'unité par id client
   .get(withAuth, async (req, res) => {
     const custumers = await getUnitById(req.params.id)
     return res.send(custumers)
+  })
+  // Update Unité
+  .patch(async (req, res) => {
+    try {
+      const unnitUpdate = await updateUnitById(req.params.id, req.body)
+      return res.send(unnitUpdate)
+    } catch (error) {
+      return res.status(500).send(error)
+    }
   })
 router.route('/')
   // Création d'une unité

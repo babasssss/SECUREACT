@@ -99,8 +99,25 @@ const deleteUnit = async (unitId, userId) => {
   }
 }
 
+const updateUnitById = async (id, unit) => {
+  if (!id) {
+    throw new Error('missing data')
+  }
+  if (!unit) {
+    throw new Error('missing unit')
+  }
+
+  // On met à jour l'unite via la méthode mongoose findByIdAndUpdate
+  const userUpdate = await Unit.findByIdAndUpdate(id, unit, { new: true })
+
+  const userObject = userUpdate.toObject()
+
+  return userObject
+}
+
 module.exports = {
   getUnitById,
   createUnit,
-  deleteUnit
+  deleteUnit,
+  updateUnitById
 }
