@@ -11,7 +11,7 @@ router.route('/:id')
   })
 
   // Supprimer un produit
-  .delete(async (req, res) => {
+  .delete(withAuth, async (req, res) => {
     try {
       // console.log(req.params.id)
       await deleteProduct(req.params.id)
