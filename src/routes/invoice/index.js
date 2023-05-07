@@ -1,4 +1,4 @@
-const { getInvoiceById, createInvoice, deleteInvoice } = require('../../controllers/invoiceController')
+const { getInvoiceById, createInvoice, deleteInvoice, updateInvoiceById } = require('../../controllers/invoiceController')
 
 const router = require('express').Router()
 const withAuth = require('../../middlewares/auth')
@@ -21,6 +21,15 @@ router.route('/:id')
       return res.send(`La facture id : ${req.params.id} a été supprimer ! `)
     } catch (error) {
       console.error(error)
+      return res.status(500).send(error)
+    }
+  })
+  // Update User
+  .patch(async (req, res) => {
+    try {
+      const userUpdate = await updateInvoiceById(req.params.id, req.body)
+      return res.send(userUpdate)
+    } catch (error) {
       return res.status(500).send(error)
     }
   })

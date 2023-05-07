@@ -49,6 +49,24 @@ const createInvoice = async (invoice) => {
   // On retourne les informations de la facture créer
   return savedInvoiceObject
 }
+
+const updateInvoiceById = async (id, invoice) => {
+  if (!invoice) {
+    throw new Error('missing invoice')
+  }
+
+  // Mettre à jour la date de facturation
+  invoice.date = new Date(invoice.date)
+  // Mettre à jour la date d'échéance
+  const maturityDate = new Date(invoice.date)
+  maturityDate.setMonth(maturityDate.getMonth() + 1)
+  invoice.maturity = maturityDate
+
+  // Utilisez la méthode findByIdAndUpdate pour mettre à jour la facture en utilisant l'ID récupéré
+  const updatedInvoice = await Invoice.findByIdAndUpdate(id, invoice, { new: true })
+  return updatedInvoice
+}
+
 const deleteInvoice = async (invoice) => {
   if (!invoice) {
     throw new Error('missing data')
@@ -68,5 +86,6 @@ const deleteInvoice = async (invoice) => {
 module.exports = {
   getInvoiceById,
   createInvoice,
-  deleteInvoice
+  deleteInvoice,
+  updateInvoiceById
 }
