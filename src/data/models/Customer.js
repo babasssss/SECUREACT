@@ -48,7 +48,11 @@ const customerSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users',
     required: true
-  }
+  },
+  invoices: [{ // Ajout de la référence à la collection de factures
+    type: Schema.Types.ObjectId,
+    ref: 'invoices'
+  }]
 
 }, { timestamps: true })
 
