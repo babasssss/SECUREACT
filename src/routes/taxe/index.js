@@ -1,4 +1,4 @@
-const { getTaxeById, createTaxe, deleteTaxe } = require('../../controllers/taxeController')
+const { getTaxeById, createTaxe, deleteTaxe, updateTaxeById } = require('../../controllers/taxeController')
 
 const router = require('express').Router()
 const withAuth = require('../../middlewares/auth')
@@ -8,6 +8,15 @@ router.route('/:id')
   .get(withAuth, async (req, res) => {
     const custumers = await getTaxeById(req.params.id)
     return res.send(custumers)
+  })
+  // Update taxe
+  .patch(async (req, res) => {
+    try {
+      const taxeUpdate = await updateTaxeById(req.params.id, req.body)
+      return res.send(taxeUpdate)
+    } catch (error) {
+      return res.status(500).send(error)
+    }
   })
 router.route('/')
   // Création d'une taxe

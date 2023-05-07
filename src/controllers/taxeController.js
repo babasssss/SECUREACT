@@ -98,9 +98,25 @@ const deleteTaxe = async (taxeId, userId) => {
     throw new Error('You no longer own the tax! However it is impossible to remove the tax because it is associated with other users')
   }
 }
+const updateTaxeById = async (id, taxe) => {
+  if (!id) {
+    throw new Error('missing data')
+  }
+  if (!taxe) {
+    throw new Error('missing taxe')
+  }
+
+  // On met à jour le la taxe via la méthode mongoose findByIdAndUpdate
+  const taxeUpdate = await Taxe.findByIdAndUpdate(id, taxe, { new: true })
+
+  const taxeObject = taxeUpdate.toObject()
+
+  return taxeObject
+}
 
 module.exports = {
   getTaxeById,
   createTaxe,
-  deleteTaxe
+  deleteTaxe,
+  updateTaxeById
 }
