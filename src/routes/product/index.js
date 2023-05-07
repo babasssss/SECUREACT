@@ -1,4 +1,4 @@
-const { getProductById, createProduct, deleteProduct } = require('../../controllers/productController')
+const { getProductById, createProduct, deleteProduct, updateProductById } = require('../../controllers/productController')
 
 const router = require('express').Router()
 const withAuth = require('../../middlewares/auth')
@@ -8,6 +8,15 @@ router.route('/:id')
   .get(withAuth, async (req, res) => {
     const custumers = await getProductById(req.params.id)
     return res.send(custumers)
+  })
+  // Mise a jour du produit
+  .patch(async (req, res) => {
+    try {
+      const prodductUpdate = await updateProductById(req.params.id, req.body)
+      return res.send(prodductUpdate)
+    } catch (error) {
+      return res.status(500).send(error)
+    }
   })
 
   // Supprimer un produit

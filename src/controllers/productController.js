@@ -96,8 +96,25 @@ const deleteProduct = async (id) => {
   await User.updateMany({}, { $pull: { products: id } })
 }
 
+const updateProductById = async (id, product) => {
+  if (!id) {
+    throw new Error('missing data')
+  }
+  if (!product) {
+    throw new Error('missing product')
+  }
+
+  // On met à jour du produit via la méthode mongoose findByIdAndUpdate
+  const productUpdate = await Product.findByIdAndUpdate(id, product, { new: true })
+
+  const productObject = productUpdate.toObject()
+
+  return productObject
+}
+
 module.exports = {
   getProductById,
   createProduct,
-  deleteProduct
+  deleteProduct,
+  updateProductById
 }
