@@ -54,8 +54,25 @@ const deleteUserById = async (id) => {
   await User.findByIdAndDelete(id)
 }
 
+const updateUserById = async (id, user) => {
+  if (!id) {
+    throw new Error('missing data')
+  }
+  if (!user) {
+    throw new Error('missing user')
+  }
+
+  // On met à jour le user via la méthode mongoose findByIdAndUpdate
+  const userUpdate = await User.findByIdAndUpdate(id, user, { new: true }).select('-password')
+
+  const userObject = userUpdate.toObject()
+
+  return userObject
+}
+
 module.exports = {
   getUsers,
   createUser,
-  deleteUserById
+  deleteUserById,
+  updateUserById
 }

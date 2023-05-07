@@ -24,11 +24,11 @@ router.route('/:id')
       return res.status(500).send(error)
     }
   })
-  // Update User
+  // Update Invoice
   .patch(async (req, res) => {
     try {
-      const userUpdate = await updateInvoiceById(req.params.id, req.body)
-      return res.send(userUpdate)
+      const invoiceUpdate = await updateInvoiceById(req.params.id, req.body)
+      return res.send(invoiceUpdate)
     } catch (error) {
       return res.status(500).send(error)
     }

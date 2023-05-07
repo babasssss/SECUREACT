@@ -1,4 +1,4 @@
-const { getUsers, createUser, deleteUserById } = require('../../controllers/usersController')
+const { getUsers, createUser, deleteUserById, updateUserById } = require('../../controllers/usersController')
 const withAuth = require('../../middlewares/auth')
 const router = require('express').Router()
 
@@ -27,6 +27,15 @@ router.route('/:id')
       return res.send(`L'utilisateur ayant id : ${req.params.id} a bien été supprimer ! `)
     } catch (error) {
       console.error(error)
+      return res.status(500).send(error)
+    }
+  })
+  // Update User
+  .patch(async (req, res) => {
+    try {
+      const userUpdate = await updateUserById(req.params.id, req.body)
+      return res.send(userUpdate)
+    } catch (error) {
       return res.status(500).send(error)
     }
   })
