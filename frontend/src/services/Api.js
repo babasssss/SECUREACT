@@ -24,7 +24,9 @@ api.interceptors.request.use(
 )
 
 const login = async (credential) => {
+  console.log(credential)
   const response = await api.post('auth/login', credential)
+  console.log(response.data)
   return response.data
 }
 

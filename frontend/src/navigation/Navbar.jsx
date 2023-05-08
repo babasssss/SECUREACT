@@ -12,7 +12,6 @@ function handleClick (event) {
 
 function Navbar () {
   const { state: { isAuthenticated, user } } = useAuth()
-  console.log(user.firstName)
   return (
     <div role='presentation' onClick={handleClick}>
       <Breadcrumbs aria-label='breadcrumb'>

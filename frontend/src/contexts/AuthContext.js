@@ -23,7 +23,7 @@ const initialState = {
 }
 
 const AuthReducer = (state, action) => {
-  // console.log(action.data)
+  console.log(action)
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESS:
       return {
@@ -66,8 +66,9 @@ const AuthReducer = (state, action) => {
 const AuthContextFactory = (dispatch) => ({
   login: async (credentials) => {
     try {
+      console.log(credentials)
       const result = await login(credentials)
-      toast.success(`Wesh fréro ${result.user.username}, koi de neuf mageule  sa va ou koi ! `)
+      toast.success(`Bon retour parmi nous, ${result._user.firstName.charAt(0).toUpperCase() + result._user.firstName.slice(1)}${result._user.lastName.charAt(0).toUpperCase()}. Tu nous as manqué ! `)
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
         data: result

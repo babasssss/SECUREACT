@@ -5,7 +5,7 @@ import '../styles/Form_Auth.scss'
 
 function LoginForm ({ onSubmit }) {
   const [credentials, setCredentials] = useState({
-    email: 'ba.test@gmail.fr',
+    email: 'ba.soreau@proton.me',
     password: 'password'
   })
 
