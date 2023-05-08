@@ -46,7 +46,31 @@ const loginUser = async (credentials, callback) => {
     }
   })
 }
+const registerUser = async (user) => {
+  // Verif présence email password
+  if (!user.email || !user.password) {
+    throw new Error('missing data')
+  }
+
+  const _user = new User({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    phone: user.phone,
+    email: user.email,
+    password: user.password
+  })
+
+  // On enregistre le user et on récup dans MongoDB
+  const savedUser = await _user.save()
+
+  // Retirer le password de la route
+  const savedUserObject = savedUser.toObject()
+  delete savedUserObject.password
+  // On renvoit le user dans la réponse de l'API
+  return savedUserObject
+}
 
 module.exports = {
-  loginUser
+  loginUser,
+  registerUser
 }

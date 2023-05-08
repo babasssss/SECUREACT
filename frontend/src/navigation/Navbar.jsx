@@ -12,7 +12,7 @@ function handleClick (event) {
 
 function Navbar () {
   const { state: { isAuthenticated, user } } = useAuth()
-
+  console.log(user.firstName)
   return (
     <div role='presentation' onClick={handleClick}>
       <Breadcrumbs aria-label='breadcrumb'>
@@ -30,7 +30,7 @@ function Navbar () {
             ? (
               <Link to='/auth'>
                 <AccountBoxIcon fontSize='inherit' />
-                Hello, {user.firstName}
+                {`Hello,  ${user.firstName.charAt(0).toUpperCase()}${user.lastName.charAt(0).toUpperCase()}`}
               </Link>
               )
             : (

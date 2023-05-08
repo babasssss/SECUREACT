@@ -23,20 +23,21 @@ const initialState = {
 }
 
 const AuthReducer = (state, action) => {
+  // console.log(action.data)
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESS:
       return {
         isAuthenticated: true,
-        token: action.data.jwt,
-        user: action.data.user,
+        token: action.data.token,
+        user: action.data._user,
         loading: false,
         error: null
       }
     case actionTypes.REGISTER_SUCESS:
       return {
         isAuthenticated: true,
-        token: action.data.jwt,
-        user: action.data.user,
+        token: action.data.token,
+        user: action.data._user,
         loading: false,
         error: null
       }

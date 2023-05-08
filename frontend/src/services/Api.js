@@ -24,16 +24,12 @@ api.interceptors.request.use(
 )
 
 const login = async (credential) => {
-  console.log(credential)
   const response = await api.post('auth/login', credential)
-  console.log(response.data)
   return response.data
 }
 
 const register = async (credential) => {
-  console.log(credential)
-  const response = await api.post('users', credential)
-  console.log(response.data)
+  const response = await api.post('auth/register', credential)
   return response.data
 }
 
