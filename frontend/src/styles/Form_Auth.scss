@@ -1,0 +1,24 @@
+@import './mixins';
+@import './variables';
+
+.auth{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f8f9fd;
+  
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: grid;
+  background-color: #f8f9fd;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 2em;
+
+}

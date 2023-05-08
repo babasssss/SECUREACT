@@ -34,6 +34,12 @@ app.use('/invoice', require('./routes/invoice'))
 app.get('/', (req, res) => {
   res.send("Bienvenu sur l'API SECUREACT!")
 })
+// Route initiale
+app.get('/api/youtube', (req, res) => {
+  res.send({
+    msg: 'Hello les hardcoders !'
+  })
+})
 
 app.listen(port, () => {
   console.log('Le serveur est en cours d’exécution sur le port ' + port)
