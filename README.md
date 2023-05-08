@@ -23,7 +23,9 @@ Pour démarrer l'application, suivez les étapes ci-dessous :
 ### Étape 1 - Démarrer le back-end
 
 Tout d'abord, ouvrez un terminal et naviguez jusqu'au répertoire back :`cd back`
+
 Ensuite, installez les dépendances avec yarn : `yarn`
+
 Enfin, démarrez le serveur de développement : `yarn dev`
 
 
@@ -31,7 +33,9 @@ Enfin, démarrez le serveur de développement : `yarn dev`
 ### Étape 2 - Démarrer le front-end
 
 Dans un nouveau terminal, naviguez jusqu'au répertoire frontend : `cd frontend`
+
 Installez les dépendances avec yarn : `yarn `
+
 Enfin, démarrez l'application : `yarn start`
 
 
@@ -42,7 +46,7 @@ La documentation évoluera au fur et à mesure que le projet avancera. Restez à
 ### Projet React.JS - Node.JS
 #### Nom projet : SECUREACT
 
-** Pour ce projet, je propose de réalisé une application en NodeJS pour l’API et une application en ReactJS pour le mobile First. Ce projet vise une personne ambda qui souhaite gérer ces factures, ces devis et ces clients **
+**Pour ce projet, je propose de réalisé une application en NodeJS pour l’API et une application en ReactJS pour le mobile First. Ce projet vise une personne ambda qui souhaite gérer ces factures, ces devis et ces clients**
 
 - [ ] Il faut donc mettre à disposition de l’utilisateur la possibilité de gérer l’ensemble de c’est fonctionnalité 
 - [ ]  Une interface / tableau de bord 

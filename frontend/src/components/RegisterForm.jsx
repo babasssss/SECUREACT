@@ -31,7 +31,7 @@ function RegisterForm ({ onSubmit }) {
       <form noValidate onSubmit={handleSubmit}>
         <div className='form'>
           <TextInput
-            label="Nom d'utilisateur"
+            label='Nom :'
             type='text'
             name='lastName'
             onChange={handleChange}
