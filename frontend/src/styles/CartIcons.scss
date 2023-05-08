@@ -1,0 +1,14 @@
+@import './variables';
+
+.cart-icon {
+  position: relative;
+  .badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $primary-color;
+    padding: 2px 5px;
+    font-size: 10px;
+    border-radius: 50%;
+  }
+}
