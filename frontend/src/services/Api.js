@@ -30,6 +30,14 @@ const login = async (credential) => {
   return response.data
 }
 
+const updateProfil = async (credential, id) => {
+  console.log(id)
+  console.log('merde')
+  console.log(credential)
+  const response = await api.post(`users/${id}`, credential)
+  return response.data
+}
+
 const register = async (credential) => {
   const response = await api.post('auth/register', credential)
   return response.data
@@ -37,5 +45,6 @@ const register = async (credential) => {
 
 export {
   login,
-  register
+  register,
+  updateProfil
 }

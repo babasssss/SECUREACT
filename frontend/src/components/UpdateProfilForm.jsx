@@ -2,9 +2,16 @@ import { useState } from 'react'
 import TextInput from './TextInput'
 import SubmitButton from './SubmitButton'
 import '../styles/Form_Auth.scss'
+import { useAuth } from '../contexts/AuthContext'
 
 function UpdateProfilForm ({ onSubmit }) {
-  const [credentials, setCredentials] = useState({})
+  const { state: { user } } = useAuth()
+  const [credentials, setCredentials] = useState({
+    email: user.email,
+    lastName: user.lastName,
+    firstName: user.firstName,
+    phone: user.phone
+  })
 
   const handleChange = (event) => {
     const inputName = event.target.name
@@ -20,7 +27,6 @@ function UpdateProfilForm ({ onSubmit }) {
   }
   return (
     <>
-      <h2>Mon profil</h2>
       <form noValidate onSubmit={handleSubmit}>
         <div className='form'>
           <TextInput
@@ -46,6 +52,14 @@ function UpdateProfilForm ({ onSubmit }) {
             placeholder='ANTOINE'
             onChange={handleChange}
             value={credentials.lastName}
+          />
+          <TextInput
+            label='Téléphone :'
+            type='number'
+            name='phone'
+            placeholder='0678456434'
+            onChange={handleChange}
+            value={credentials.phone}
           />
 
           <SubmitButton value='Mettre à jour' />

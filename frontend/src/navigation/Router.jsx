@@ -23,6 +23,7 @@ function Router () {
         <Route index path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/auth' element={<Auth />} />
+        <Route path='/profil' element={<Navigate to='/auth' replace />} />
       </Routes>
     )
   }

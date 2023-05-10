@@ -31,41 +31,9 @@ function Navbar () {
     setAnchorElUser(null)
   }
 
-  // return (
-  //   <div role='presentation' onClick={handleClick}>
-  //     <Breadcrumbs aria-label='breadcrumb'>
-  //       <Link to='/'>
-  //         <HomeIcon fontSize='inherit' />
-  //         Accueil
-  //       </Link>
-  //       <Link to='/about'>
-  //         <WhatshotIcon fontSize='inherit' />
-  //         A propos
-  //       </Link>
-
-  //       {
-  //         isAuthenticated
-  //           ? (
-  //             <Link to='/profil'>
-  //               <AccountBoxIcon fontSize='inherit' />
-  //               {`Profil :  ${user.firstName.charAt(0).toUpperCase()}${user.lastName.charAt(0).toUpperCase()}`}
-  //             </Link>
-  //             )
-  //           : (
-  //             <Link to='/auth'>
-  //               <AccountBoxIcon fontSize='inherit' />
-  //               Authentification
-  //             </Link>
-  //             )
-  //       }
-
-  //     </Breadcrumbs>
-
-  //   </div>
-  // )
   return (
     <AppBar position='static'>
-      <Container maxWidth='xl'>
+      <Container maxWidth='x'>
         <Toolbar disableGutters>
           {/* LOGO */}
           <DescriptionIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -99,7 +67,7 @@ function Navbar () {
                 A propos
               </Link>
             </Button>
-            {/* Facture */}
+            {/* Facture
             <Button
               key='facture'
               onClick={handleCloseNavMenu}
@@ -109,6 +77,7 @@ function Navbar () {
                 Facture
               </Link>
             </Button>
+            */}
           </Box>
 
           {/* AVATAR */}

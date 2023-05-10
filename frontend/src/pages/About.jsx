@@ -1,6 +1,13 @@
+import '../styles/HeaderStyle.scss'
+
 function About () {
   return (
-    <h1>ABOUT</h1>
+    <>
+      <div className='header'>
+        <h1>ABOUT</h1>
+
+      </div>
+    </>
   )
 }
 

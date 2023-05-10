@@ -10,7 +10,9 @@ const actionTypes = {
   LOADING: 'LOADING',
   LOGOUT: 'LOGOUT',
   REGISTER_SUCESS: 'REGISTER_SUCESS',
-  REGISTER_FAILURE: 'REGISTER_FAILURE'
+  REGISTER_FAILURE: 'REGISTER_FAILURE',
+  PROFIL_UPDATE_SUCESS: 'PROFIL_UPDATE_SUCESS',
+  PROFIL_UPDATE_FAILURE: 'PROFIL_UPDATE_FAILURE'
 
 }
 
@@ -56,6 +58,22 @@ const AuthReducer = (state, action) => {
         ...state,
         loading: true
       }
+    case actionTypes.PROFIL_UPDATE_SUCESS:
+      return {
+        isAuthenticated: window.localStorage.getItem('isAuthenticated'),
+        token: window.localStorage.getItem('token'),
+        user: action.data._user,
+        loading: window.localStorage.getItem('loading'),
+        error: window.localStorage.getItem('error')
+      }
+    case actionTypes.PROFIL_UPDATE_FAILURE:
+      return {
+        isAuthenticated: window.localStorage.getItem('isAuthenticated'),
+        token: window.localStorage.getItem('token'),
+        user: window.localStorage.getItem('user'),
+        loading: window.localStorage.getItem('loading'),
+        error: action.data.error
+      }
     case actionTypes.LOGOUT:
       return initialState
 
@@ -78,6 +96,22 @@ const AuthContextFactory = (dispatch) => ({
       dispatch({
         type: actionTypes.LOGIN_FAILURE,
         data: { error }
+      })
+    }
+  },
+  updateProfil: async (updateProfil) => {
+    try {
+      console.log(updateProfil)
+      const result = await updateProfil(updateProfil)
+      toast.success('Votre profil a été mis a jour !')
+      dispatch({
+        type: actionTypes.PROFIL_UPDATE_SUCESS,
+        data: result
+      })
+    } catch (error) {
+      toast.error('Les informations saisie son incorrecte ! ')
+      dispatch({
+        type: actionTypes.PROFIL_UPDATE_FAILURE
       })
     }
   },
