@@ -14,6 +14,7 @@ function UpdateProfilForm ({ onSubmit }) {
   })
 
   const handleChange = (event) => {
+    event.preventDefault()
     const inputName = event.target.name
     const inputValue = event.target.value
     setCredentials({

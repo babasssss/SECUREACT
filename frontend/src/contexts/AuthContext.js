@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { login, register } from '../services/Api'
+import { login, register, update } from '../services/Api'
 import { toast } from 'react-toastify'
 
 const AuthContext = React.createContext()
@@ -25,7 +25,6 @@ const initialState = {
 }
 
 const AuthReducer = (state, action) => {
-  console.log(action)
   switch (action.type) {
     case actionTypes.LOGIN_SUCCESS:
       return {
@@ -60,18 +59,18 @@ const AuthReducer = (state, action) => {
       }
     case actionTypes.PROFIL_UPDATE_SUCESS:
       return {
-        isAuthenticated: window.localStorage.getItem('isAuthenticated'),
+        isAuthenticated: true,
         token: window.localStorage.getItem('token'),
         user: action.data._user,
-        loading: window.localStorage.getItem('loading'),
+        loading: false,
         error: window.localStorage.getItem('error')
       }
     case actionTypes.PROFIL_UPDATE_FAILURE:
       return {
-        isAuthenticated: window.localStorage.getItem('isAuthenticated'),
+        isAuthenticated: true,
         token: window.localStorage.getItem('token'),
-        user: window.localStorage.getItem('user'),
-        loading: window.localStorage.getItem('loading'),
+        user: action.data._user,
+        loading: false,
         error: action.data.error
       }
     case actionTypes.LOGOUT:
@@ -84,7 +83,6 @@ const AuthReducer = (state, action) => {
 const AuthContextFactory = (dispatch) => ({
   login: async (credentials) => {
     try {
-      console.log(credentials)
       const result = await login(credentials)
       toast.success(`Bon retour parmi nous, ${result._user.firstName.charAt(0).toUpperCase() + result._user.firstName.slice(1)}${result._user.lastName.charAt(0).toUpperCase()}. Tu nous as manqué ! `)
       dispatch({
@@ -99,15 +97,26 @@ const AuthContextFactory = (dispatch) => ({
       })
     }
   },
-  updateProfil: async (updateProfil) => {
+  update: async (updateProfil, id) => {
     try {
-      console.log(updateProfil)
-      const result = await updateProfil(updateProfil)
+      console.log('test')
+      const result = await update(updateProfil, id)
+      console.log(result)
       toast.success('Votre profil a été mis a jour !')
       dispatch({
         type: actionTypes.PROFIL_UPDATE_SUCESS,
         data: result
       })
+
+      // Ajouter l'effet secondaire pour mettre à jour le stockage local
+      const auth = JSON.parse(window.localStorage.getItem('AUTH'))
+      console.log(auth)
+      const updatedAuth = {
+        ...auth,
+        user: result
+      }
+      console.log(updatedAuth)
+      window.localStorage.setItem('AUTH', JSON.stringify(updatedAuth))
     } catch (error) {
       toast.error('Les informations saisie son incorrecte ! ')
       dispatch({

@@ -4,9 +4,10 @@ import '../styles/HeaderStyle.scss'
 import UpdateProfilForm from '../components/UpdateProfilForm'
 import { Link } from 'react-router-dom'
 function Profil () {
-  const { updateProfil, state: { isAuthenticated } } = useAuth()
+  const { update, state: { isAuthenticated, user } } = useAuth()
+
   const handleSubmit = async (credentials) => {
-    updateProfil(credentials)
+    update(credentials, user._id)
   }
 
   return (

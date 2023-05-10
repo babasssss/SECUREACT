@@ -24,17 +24,12 @@ api.interceptors.request.use(
 )
 
 const login = async (credential) => {
-  console.log(credential)
   const response = await api.post('auth/login', credential)
-  console.log(response.data)
   return response.data
 }
 
-const updateProfil = async (credential, id) => {
-  console.log(id)
-  console.log('merde')
-  console.log(credential)
-  const response = await api.post(`users/${id}`, credential)
+const update = async (credential, id) => {
+  const response = await api.patch(`users/${id}`, credential)
   return response.data
 }
 
@@ -46,5 +41,5 @@ const register = async (credential) => {
 export {
   login,
   register,
-  updateProfil
+  update
 }

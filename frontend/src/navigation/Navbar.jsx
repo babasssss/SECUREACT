@@ -87,7 +87,8 @@ function Navbar () {
                 {
                   isAuthenticated
                     ? (
-                      <Avatar alt={`${user.firstName.toUpperCase()}`} src='/static/images/avatar/2.jpg' />
+                      // <Avatar alt={`${user.firstName.toUpperCase()}`} src='/static/images/avatar/2.jpg' />
+                      <Avatar alt='T' src='/static/images/avatar/2.jpg' />
                       )
                     : (
                       <Avatar alt='' src='/static/images/avatar/2.jpg' />
