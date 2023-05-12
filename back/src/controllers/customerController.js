@@ -53,7 +53,7 @@ const createCustumer = async (customer) => {
   return savedUserObject
 }
 
-// Supprimer un customer via son ID et l'ID user
+// Supprimer un customer via l'ID user Puis l'ID customer
 const deleteCustomerByIdUser = async (idUser, idCustomer) => {
   if (!idUser || !idCustomer) {
     throw new Error('missing data')

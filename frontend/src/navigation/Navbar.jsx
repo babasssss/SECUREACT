@@ -77,9 +77,26 @@ function Navbar () {
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               <Link to='/invoice'>
-                Facture
+                Factures
               </Link>
             </Button>
+
+            {/* Client */}
+            {
+              isAuthenticated
+                ? (
+                  <Button
+                    key='client'
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >
+                    <Link to='/customer'>
+                      Clients
+                    </Link>
+                  </Button>
+                  )
+                : (null)
+            }
 
           </Box>
 

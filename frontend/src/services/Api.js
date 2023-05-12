@@ -52,9 +52,60 @@ const getInvoice = async (id) => {
   }
 }
 
+/**
+ * Client
+ */
+const getCustomer = async (id) => {
+  try {
+    const response = await api.get(`/customers/${id}?populate=*`)
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const createCustomer = async (credentials, id) => {
+  try {
+    const _data = {
+      firstName: credentials.firstName,
+      lastName: credentials.lastName,
+      email: credentials.email,
+      phone: credentials.phone,
+      customerType: credentials.customerType,
+      address: {
+        street: credentials.street,
+        postalCode: credentials.postalCode,
+        city: credentials.city,
+        country: credentials.country
+      },
+      user: id
+    }
+    const response = await api.post('/customers', _data)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const deleteCustomer = async (idCustomer, idUser) => {
+  try {
+    console.log(idCustomer)
+    console.log(idUser)
+    const response = await api.delete(`/customers/${idUser}/${idCustomer}`)
+    console.log('COOOOOOOOOOOOOLLLLLLLLLLLLLLLLLLLLLLL')
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export {
   login,
   register,
   update,
-  getInvoice
+  getInvoice,
+  getCustomer,
+  createCustomer,
+  deleteCustomer
 }

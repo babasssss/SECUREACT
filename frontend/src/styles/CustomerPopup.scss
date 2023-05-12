@@ -1,0 +1,24 @@
+@import './variables';
+@import './mixins';
+
+
+.popup{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  background-color: $secondary-color;
+  border: .75px solid #000;
+  border-radius: 5px;
+  box-shadow: 24px;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .popup {
+  width: 70%;
+  max-height: 650px;
+  overflow-y: auto;
+  }
+  }

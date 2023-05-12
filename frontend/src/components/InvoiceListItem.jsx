@@ -117,8 +117,6 @@ Row.propTypes = {
 }
 
 function InvoicesList ({ invoices }) {
-  console.log(invoices)
-
   const rows = invoices.map((invoice) => {
     return createData('Frozen yoghurt', invoice.numInvoice, invoice.date.substring(0, 10), invoice.maturity.substring(0, 10), 4.0, 3.99)
   })

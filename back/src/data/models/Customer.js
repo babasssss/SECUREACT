@@ -22,7 +22,7 @@ const customerSchema = new Schema({
   customerType: {
     type: Number,
     required: true,
-    enum: [0, 1] // Clientprofessionnel [1] ou particulier[0]
+    enum: [0, 1] // Client Professionnel [1] ou particulier[0]
   },
   // Coordonnée Client
   address: {
