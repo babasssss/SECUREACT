@@ -1,0 +1,22 @@
+@import './mixins';
+@import './variables';
+
+
+.formCustomer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: grid;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 2em;
+}
+
+@media screen and (max-width: 767px) {
+  .formCustomer {
+    grid-template-columns: 1fr ;
+    grid-template-rows: auto;
+    gap: 10px;
+    justify-items: center;
+  }
+}

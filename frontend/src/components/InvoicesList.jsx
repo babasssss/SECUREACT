@@ -17,7 +17,7 @@ function InvoicesList ({ invoices }) {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>CLIENT</TableCell>
+              <TableCell>NOM CLIENT</TableCell>
               <TableCell align='right'>NUMÉRO</TableCell>
               <TableCell align='right'>CRÉER LE</TableCell>
               <TableCell align='right'>ECHÉANCE</TableCell>
@@ -27,14 +27,6 @@ function InvoicesList ({ invoices }) {
           <InvoiceListeItem key={invoices.id} invoices={invoices} />
         </Table>
       </TableContainer>
-
-      {/* {
-        invoices.map(invoice => {
-          return (
-            <InvoiceListeItem key={invoice.id} invoice={invoice} />
-          )
-        })
-      } */}
     </div>
   )
 }

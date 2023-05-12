@@ -6,6 +6,7 @@ import Profil from '../pages/Profil'
 import Invoice from '../pages/Invoice'
 
 import { useAuth } from '../contexts/AuthContext'
+import Customer from '../pages/Customer'
 
 function Router () {
   const { state: { isAuthenticated } } = useAuth()
@@ -16,6 +17,7 @@ function Router () {
         <Route path='/about' element={<About />} />
         <Route path='/profil' element={<Profil />} />
         <Route path='/invoice' element={<Invoice />} />
+        <Route path='/customer' element={<Customer />} />
         <Route path='/auth' element={<Navigate to='/profil' replace />} />
       </Routes>
     )

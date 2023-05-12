@@ -4,6 +4,26 @@
 .submit-btn{
   @include btn;
   margin-block: 20px;
+}
 
-  
+.submit-btn-popup{
+  margin-block: 20px;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 5px;
+  padding-inline: 30px;
+  padding-block: 15px;
+  cursor: pointer;
+  color: $text-color;
+  font-weight: 600;
+  font-size: 18px;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+  transition: .50s;
+  &:hover {
+    background-color: $dark-color;
+    color: $primary-color;
+  }
 }

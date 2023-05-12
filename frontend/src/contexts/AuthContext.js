@@ -99,9 +99,7 @@ const AuthContextFactory = (dispatch) => ({
   },
   update: async (updateProfil, id) => {
     try {
-      console.log('test')
       const result = await update(updateProfil, id)
-      console.log(result)
       toast.success('Votre profil a été mis a jour !')
       dispatch({
         type: actionTypes.PROFIL_UPDATE_SUCESS,
@@ -110,12 +108,12 @@ const AuthContextFactory = (dispatch) => ({
 
       // Ajouter l'effet secondaire pour mettre à jour le stockage local
       const auth = JSON.parse(window.localStorage.getItem('AUTH'))
-      console.log(auth)
+      // console.log(auth)
       const updatedAuth = {
         ...auth,
         user: result
       }
-      console.log(updatedAuth)
+      // console.log(updatedAuth)
       window.localStorage.setItem('AUTH', JSON.stringify(updatedAuth))
     } catch (error) {
       toast.error('Les informations saisie son incorrecte ! ')
