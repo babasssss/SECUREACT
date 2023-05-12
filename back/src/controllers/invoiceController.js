@@ -1,12 +1,13 @@
 const Invoice = require('../data/models/Invoice')
 const Customer = require('../data/models/Customer')
+const User = require('../data/models/User')
 
-// Visualiser la facture par ID
+// Visualiser la facture par ID user
 const getInvoiceById = async (invoiceID) => {
   console.log(invoiceID)
-  const invoice = await Invoice.find({ _id: invoiceID }).exec()
+  const invoice = await Invoice.find({ user: invoiceID }).exec()
   if (!invoiceID) {
-    throw new Error('Missing Invoice Data ')
+    throw new Error('Missing Invoice/user Data ')
   }
   return invoice
 }
@@ -23,9 +24,18 @@ const createInvoice = async (invoice) => {
     throw new Error(`Client with ID ${invoice.customer} not found`)
   }
   console.log(existingCustomer)
+
+  // Vérifier si l'user exist
+  const existingUser = await User.findById(invoice.user)
+  if (!existingUser) {
+    throw new Error(`User with ID ${invoice.user} not found`)
+  }
+  console.log(existingUser)
+
   // création tuple facture
   const _invoice = new Invoice({
     customer: invoice.customer, // Ajouter l'ID du client à la facture
+    user: invoice.user, // Ajouter l'ID de l'user à la facture
     numInvoice: invoice.numInvoice,
     date: invoice.date,
     paymentType: invoice.paymentType,

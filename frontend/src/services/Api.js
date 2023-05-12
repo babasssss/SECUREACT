@@ -22,9 +22,16 @@ api.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
+/**
+ * Utilisateur
+ */
 const login = async (credential) => {
   const response = await api.post('auth/login', credential)
+  return response.data
+}
+
+const update = async (credential, id) => {
+  const response = await api.patch(`users/${id}`, credential)
   return response.data
 }
 
@@ -33,7 +40,21 @@ const register = async (credential) => {
   return response.data
 }
 
+/**
+ * Facture
+ */
+const getInvoice = async (id) => {
+  try {
+    const response = await api.get(`/invoice/${id}?populate=*`)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export {
   login,
-  register
+  register,
+  update,
+  getInvoice
 }

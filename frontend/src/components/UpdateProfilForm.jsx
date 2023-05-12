@@ -2,17 +2,19 @@ import { useState } from 'react'
 import TextInput from './TextInput'
 import SubmitButton from './SubmitButton'
 import '../styles/Form_Auth.scss'
+import { useAuth } from '../contexts/AuthContext'
 
-function RegisterForm ({ onSubmit }) {
+function UpdateProfilForm ({ onSubmit }) {
+  const { state: { user } } = useAuth()
   const [credentials, setCredentials] = useState({
-    email: 'ba.soreau@protonsss.me',
-    firstName: 'bastien',
-    lastName: 'soreau',
-    phone: '0454323456',
-    password: 'password'
+    email: user.email,
+    lastName: user.lastName,
+    firstName: user.firstName,
+    phone: user.phone
   })
 
   const handleChange = (event) => {
+    event.preventDefault()
     const inputName = event.target.name
     const inputValue = event.target.value
     setCredentials({
@@ -24,59 +26,48 @@ function RegisterForm ({ onSubmit }) {
     event.preventDefault()
     onSubmit(credentials)
   }
-
   return (
     <>
-      <h2>Inscription</h2>
       <form noValidate onSubmit={handleSubmit}>
         <div className='form'>
-          <TextInput
-            label='Nom :'
-            type='text'
-            name='lastName'
-            onChange={handleChange}
-            value={credentials.lastName}
-          />
-
-          <TextInput
-            label='Prénom :'
-            type='text'
-            name='firstName'
-            placeholder='Jules'
-            onChange={handleChange}
-            value={credentials.firstName}
-          />
-
-          <TextInput
-            label='Téléphone :'
-            type='text'
-            name='phone'
-            onChange={handleChange}
-            value={credentials.phone}
-          />
-
           <TextInput
             label='Email :'
             type='email'
             name='email'
-            placeholder='toto@tata.fr'
+            placeholder='secureact@yahoo.fr'
             onChange={handleChange}
             value={credentials.email}
           />
-
           <TextInput
-            label='Mot de passe :'
-            type='password'
-            name='password'
+            label='Prénom :'
+            type='text'
+            name='firstName'
+            placeholder='DUPONT'
             onChange={handleChange}
-            value={credentials.password}
+            value={credentials.firstName}
+          />
+          <TextInput
+            label='Nom :'
+            type='text'
+            name='lastName'
+            placeholder='ANTOINE'
+            onChange={handleChange}
+            value={credentials.lastName}
+          />
+          <TextInput
+            label='Téléphone :'
+            type='number'
+            name='phone'
+            placeholder='0678456434'
+            onChange={handleChange}
+            value={credentials.phone}
           />
 
-          <SubmitButton value='Créer mon compte' />
+          <SubmitButton value='Mettre à jour' />
         </div>
       </form>
     </>
   )
 }
 
-export default RegisterForm
+export default UpdateProfilForm

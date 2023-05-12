@@ -4,6 +4,7 @@ import RegisterForm from '../components/RegisterForm'
 import Button from '@mui/material/Button'
 import '../styles/Form_Auth.scss'
 import { useAuth } from '../contexts/AuthContext'
+import '../styles/HeaderStyle.scss'
 
 function Auth () {
   const [isResgister, setResgister] = useState(false)
@@ -25,20 +26,22 @@ function Auth () {
 
   return (
     <>
-      <div className='auth'>
-        <h1>AUTHENTIFICATION</h1>
-        {
+      <div className='header'>
+        <div className='auth'>
+          <h1>AUTHENTIFICATION</h1>
+          {
         isResgister
           ? <RegisterForm onSubmit={handleSubmit} />
           : <LoginForm onSubmit={handleSubmit} />
       }
-        <Button onClick={handleRegisterChange} variant='outlined'>
-          {
+          <Button onClick={handleRegisterChange} variant='outlined'>
+            {
           isResgister
             ? "J'ai déjà un compte"
             : "J'ai pas de compte "
         }
-        </Button>
+          </Button>
+        </div>
       </div>
     </>
   )
