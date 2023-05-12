@@ -7,6 +7,11 @@ const invoiceSchema = new Schema({
     ref: 'customers',
     required: true
   },
+  user: { // REF User
+    type: Schema.Types.ObjectId,
+    ref: 'users',
+    required: true
+  },
   numInvoice: { // Numéro de la facture
     type: Number
     // unique: true

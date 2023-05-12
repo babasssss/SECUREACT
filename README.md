@@ -54,50 +54,50 @@ La documentation évoluera au fur et à mesure que le projet avancera. Restez à
 #### Description  :
 
 ##### Le client :
-- [x] Numéro client 
-- [x] Nom et prénom
-- [x] Email
-- [x] Type client( particulier ou pro) 
-- [x] Téléphone
-- [x] Adresse
-- [x] CodePostal
-- [x] Ville
-- [x] Pays 
-- [x] Ref user ( référence à l’users connecter)
+- [ ] Numéro client 
+- [ ] Nom et prénom
+- [ ] Email
+- [ ] Type client( particulier ou pro) 
+- [ ] Téléphone
+- [ ] Adresse
+- [ ] CodePostal
+- [ ] Ville
+- [ ] Pays 
+- [ ] Ref user ( référence à l’users connecter)
 `
 
 ##### Les factures : 
-- [x] Ref CLIENT
-- [x] Num facture
-- [x] Date facture
-- [x] Conditions de payements ( 0j, 7j, 14j, 30j, 60j, 90j)
-- [x] Echéance PAR DEFAULT 1 mois après la date de la facture
-- [x] Message
-- [x] Ref produits
-- [x] Quantité
-- [x] Unité de messure 
-- [x] Prix 
-- [x] TVA ( O%, 5%, …)
-- [x] Montant (Calculé automatiquement par rapport à la Qté , Prix et TVA)
-- [x] Total HT (Calculé automatiquement par rapport à la Qté , Prix)
-- [x] TVA total (Montant – TotalHT)
+- [ ] Ref CLIENT
+- [ ] Num facture
+- [ ] Date facture
+- [ ] Conditions de payements ( 0j, 7j, 14j, 30j, 60j, 90j)
+- [ ] Echéance PAR DEFAULT 1 mois après la date de la facture
+- [ ] Message
+- [ ] Ref produits
+- [ ] Quantité
+- [ ] Unité de messure 
+- [ ] Prix 
+- [ ] TVA ( O%, 5%, …)
+- [ ] Montant (Calculé automatiquement par rapport à la Qté , Prix et TVA)
+- [ ] Total HT (Calculé automatiquement par rapport à la Qté , Prix)
+- [ ] TVA total (Montant – TotalHT)
 
 
 ##### Les produits : 
-- [x] Nom
-- [x] Commentaire
-- [x] Unité 
-- [x] Prix basé sur ( Prix HT ou Prix TTC)
-- [x] TVA ( O%, 5%, …)
-- [x] Prix
+- [ ] Nom
+- [ ] Commentaire
+- [ ] Unité 
+- [ ] Prix basé sur ( Prix HT ou Prix TTC)
+- [ ] TVA ( O%, 5%, …)
+- [ ] Prix
 
 
 ##### Les TVA 
-- [x] Number
+- [ ] Number
 
 
 ##### Les UNITES : 
-- [x] Nom unité : String(cm,km,…)
+- [ ] Nom unité : String(cm,km,…)
 
 
 

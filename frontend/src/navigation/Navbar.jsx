@@ -55,7 +55,9 @@ function Navbar () {
             SECUREACT
           </Typography>
 
-          {/* MENU */}
+          {/*
+            MENU
+           */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {/* A PROPOS */}
             <Button
@@ -67,7 +69,8 @@ function Navbar () {
                 A propos
               </Link>
             </Button>
-            {/* Facture
+
+            {/* Facture */}
             <Button
               key='facture'
               onClick={handleCloseNavMenu}
@@ -77,7 +80,7 @@ function Navbar () {
                 Facture
               </Link>
             </Button>
-            */}
+
           </Box>
 
           {/* AVATAR */}
