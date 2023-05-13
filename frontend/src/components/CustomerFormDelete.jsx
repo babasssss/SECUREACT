@@ -35,7 +35,7 @@ function CustomerFormDelete ({ customer, getData }) {
 
   return (
     <>
-      <TableCell align='right'>
+      <TableCell align='left'>
         <Button variant='outlined' onClick={handleClickOpen}>
           <DeleteIcon />
         </Button>

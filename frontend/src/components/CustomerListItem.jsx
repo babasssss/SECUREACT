@@ -14,6 +14,7 @@ import '../styles/CustomerListItem.scss'
 import moment from 'moment'
 import 'moment/locale/fr'
 import CustomerFormDelete from './CustomerFormDelete'
+import CustomerUpdate from './CustomerUpdate'
 
 function createData (firstName, lastName, phone, email, customerType, address, createdAt, updatedAt, id, getData) {
   return {
@@ -34,8 +35,8 @@ function Row (props) {
   const { row } = props
   const [open, setOpen] = React.useState(false)
 
-  console.log(row)
-  console.log('TEEEEEEEEEEEEEEEEEEEEEEE')
+  // console.log(row)
+  // console.log('TEEEEEEEEEEEEEEEEEEEEEEE')
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -54,8 +55,12 @@ function Row (props) {
         <TableCell align='center'>{row.phone}</TableCell>
         <TableCell align='center'>{row.email}</TableCell>
         <TableCell align='center'>{row.customerType}</TableCell>
+
+        {/* Composant pour mettre à jour le client */}
+        <CustomerUpdate customer={row} getData={row.getData} />
         {/* Composant pour supprimer le client */}
         <CustomerFormDelete customer={row} getData={row.getData} />
+
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -97,7 +102,6 @@ function Row (props) {
 }
 
 function CustomerListItem ({ customers, getData }) {
-  console.log(customers)
   const rows = customers.map((customer) => {
     const customerTypeString = customer.customerType === 0 ? 'Particulier' : 'Professionnel'
     return createData(
