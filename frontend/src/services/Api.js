@@ -58,7 +58,7 @@ const getInvoice = async (id) => {
 const getCustomer = async (id) => {
   try {
     const response = await api.get(`/customers/${id}?populate=*`)
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
   } catch (error) {
     console.error(error)
@@ -90,10 +90,10 @@ const createCustomer = async (credentials, id) => {
 
 const deleteCustomer = async (idCustomer, idUser) => {
   try {
-    console.log(idCustomer)
-    console.log(idUser)
+    // console.log(idCustomer)
+    // console.log(idUser)
     const response = await api.delete(`/customers/${idUser}/${idCustomer}`)
-    console.log('COOOOOOOOOOOOOLLLLLLLLLLLLLLLLLLLLLLL')
+    // console.log('COOOOOOOOOOOOOLLLLLLLLLLLLLLLLLLLLLLL')
     return response.data
   } catch (error) {
     console.error(error)

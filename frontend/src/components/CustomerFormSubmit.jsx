@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TextInput from './TextInput'
 import '../styles/CustomerForm.scss'
-import { createCustomer } from '../services/Api'
-import { MenuItem, TextField } from '@mui/material'
+import { createCustomer, getCustomer } from '../services/Api'
+import { MenuItem } from '@mui/material'
 import { useAuth } from '../contexts/AuthContext'
 import SubmitButtonPoppup from './SubmitButtonPopup'
 
-function CustomerForm ({ onSubmit }) {
+function CustomerForm ({ onSubmit, getData }) {
   const { state: { user } } = useAuth()
   const [credentials, setCredentials] = useState({
     firstName: 'Jean',
@@ -33,6 +33,7 @@ function CustomerForm ({ onSubmit }) {
     if (credentials.firstName && credentials.lastName && credentials.customerType && credentials.customerType && credentials.email && credentials.street && credentials.city && credentials.country && credentials.postalCode) {
       console.log(credentials)
       const result = await createCustomer(credentials, user._id)
+      getData()
       console.log(result)
       // Appelez la fonction onSubmit pour indiquer que le formulaire a été validé avec succès
       onSubmit()
@@ -65,7 +66,7 @@ function CustomerForm ({ onSubmit }) {
           />
 
           {/* Champ : Type de client */}
-          <TextField
+          <TextInput
             id='outlined-select-currency'
             select
             name='customerType'
@@ -78,7 +79,7 @@ function CustomerForm ({ onSubmit }) {
             <MenuItem key='0' value='0'>
               Client particulier
             </MenuItem>
-          </TextField>
+          </TextInput>
 
           <br />
           <h4>Coordonées client</h4>

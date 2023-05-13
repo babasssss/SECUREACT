@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TextInput from './TextInput'
 import SubmitButton from './SubmitButton'
 import '../styles/Form_Auth.scss'

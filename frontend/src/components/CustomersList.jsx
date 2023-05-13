@@ -3,7 +3,7 @@ import '../styles/RestaurantList.scss'
 import { Paper, Table, TableContainer } from '@mui/material'
 import CustomerListItem from './CustomerListItem'
 
-function CustomersList ({ customers }) {
+function CustomersList ({ customers, getData }) {
   console.log('CustomersList')
   console.log(customers)
 
@@ -11,7 +11,7 @@ function CustomersList ({ customers }) {
     <div className='list-container'>
       <TableContainer component={Paper}>
         <Table aria-label='collapsible table'>
-          <CustomerListItem key={customers.user} customers={customers} />
+          <CustomerListItem key={customers.user} customers={customers} getData={getData} />
         </Table>
       </TableContainer>
     </div>

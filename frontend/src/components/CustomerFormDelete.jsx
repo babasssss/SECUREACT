@@ -13,7 +13,7 @@ import EmailIcon from '@mui/icons-material/Email'
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone'
 import PersonIcon from '@mui/icons-material/Person'
 
-function CustomerFormDelete ({ customer }) {
+function CustomerFormDelete ({ customer, getData }) {
   console.log(customer)
   const [open, setOpen] = React.useState(false)
   const { state: { user } } = useAuth()
@@ -29,16 +29,16 @@ function CustomerFormDelete ({ customer }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const result = await deleteCustomer(customer.id, user._id)
+    getData()
     console.log(result)
   }
 
   return (
     <>
-      <TableCell align='right'>
+      <TableCell align='left'>
         <Button variant='outlined' onClick={handleClickOpen}>
           <DeleteIcon />
         </Button>
-
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>SUPPRESSION DU CLIENT</DialogTitle>
           <DialogContent>
@@ -47,16 +47,17 @@ function CustomerFormDelete ({ customer }) {
               supprimer votre client:<hr /><br />
 
               <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                   <PersonIcon /> {`${customer.firstName} ${customer.lastName}`}
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                   <EmailIcon /> {`${customer.email} `}
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={12} sm={6}>
                   <LocalPhoneIcon /> {`${customer.phone} `}
                 </Grid>
               </Grid>
+
             </DialogContentText>
           </DialogContent>
           <DialogActions>
