@@ -15,7 +15,7 @@ import moment from 'moment'
 import 'moment/locale/fr'
 import CustomerFormDelete from './CustomerFormDelete'
 
-function createData (firstName, lastName, phone, email, customerType, address, createdAt, updatedAt, id) {
+function createData (firstName, lastName, phone, email, customerType, address, createdAt, updatedAt, id, getData) {
   return {
     firstName,
     lastName,
@@ -25,7 +25,8 @@ function createData (firstName, lastName, phone, email, customerType, address, c
     address,
     createdAt,
     updatedAt,
-    id
+    id,
+    getData
   }
 }
 
@@ -54,7 +55,7 @@ function Row (props) {
         <TableCell align='center'>{row.email}</TableCell>
         <TableCell align='center'>{row.customerType}</TableCell>
         {/* Composant pour supprimer le client */}
-        <CustomerFormDelete customer={row} />
+        <CustomerFormDelete customer={row} getData={row.getData} />
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -95,7 +96,7 @@ function Row (props) {
   )
 }
 
-function CustomerListItem ({ customers }) {
+function CustomerListItem ({ customers, getData }) {
   console.log(customers)
   const rows = customers.map((customer) => {
     const customerTypeString = customer.customerType === 0 ? 'Particulier' : 'Professionnel'
@@ -108,7 +109,8 @@ function CustomerListItem ({ customers }) {
       customer.address,
       customer.createdAt,
       customer.updatedAt,
-      customer._id)
+      customer._id,
+      getData)
   })
 
   return (

@@ -44,7 +44,7 @@ const Fade = React.forwardRef(function Fade (props, ref) {
   )
 })
 
-function AddCustomerPopup () {
+function AddCustomerPopup ({ getData }) {
   const [open, setOpen] = React.useState(false)
   const [isFormValid, setIsFormValid] = useState(false)
   const handleOpen = () => {
@@ -84,7 +84,7 @@ function AddCustomerPopup () {
                   <p>Le formulaire a été validé avec succès !</p>
                   )
                 : (
-                  <CustomerForm onSubmit={handleFormSubmit} />
+                  <CustomerForm onSubmit={handleFormSubmit} getData={getData} />
                   )}
             </Box>
           </Fade>

@@ -3,6 +3,7 @@ import '../styles/HeaderStyle.scss'
 
 import UpdateProfilForm from '../components/UpdateProfilForm'
 import { Link } from 'react-router-dom'
+
 function Profil () {
   const { update, state: { isAuthenticated, user } } = useAuth()
 

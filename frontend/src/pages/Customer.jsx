@@ -11,11 +11,12 @@ function Customer () {
   const [customer, setCustomers] = useState()
   const { state: { user } } = useAuth()
 
+  const getData = async () => {
+    const result = await getCustomer(user._id)
+    setCustomers(result)
+  }
+
   useEffect(() => {
-    const getData = async () => {
-      const result = await getCustomer(user._id)
-      setCustomers(result)
-    }
     getData()
   }, [])
 
@@ -31,11 +32,11 @@ function Customer () {
               <h1>Client</h1>
             </Grid>
             <Grid item xs={4}>
-              <AddCustomerPopup />
+              <AddCustomerPopup getData={getData} />
             </Grid>
           </Grid>
         </div>
-        <CustomersList customers={customer} />
+        <CustomersList customers={customer} getData={getData} />
       </div>
     </>
   )
