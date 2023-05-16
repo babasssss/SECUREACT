@@ -4,9 +4,6 @@ import { Paper, Table, TableContainer } from '@mui/material'
 import CustomerListItem from './CustomerListItem'
 
 function CustomersList ({ customers, getData }) {
-  // console.log('CustomersList')
-  // console.log(customers)
-
   return (
     <div className='list-container'>
       <TableContainer component={Paper}>

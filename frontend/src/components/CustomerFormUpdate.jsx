@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { MenuItem } from '@mui/material'
-import { useAuth } from '../contexts/AuthContext'
 import { useState } from 'react'
 import { updateCustomer } from '../services/Api'
 import TextInput from './TextInput'
@@ -26,7 +25,6 @@ function CustomerFormUpdate ({ onSubmit, customer, getData }) {
     if (credentials.firstName !== null && credentials.lastName !== null && credentials.customerType !== null && credentials.customerType !== null && credentials.email !== null && credentials.street !== null && credentials.city !== null && credentials.country !== null && credentials.postalCode !== null) {
       await updateCustomer(credentials, customer.id)
       getData()
-      // console.log(result)
       // Appelez la fonction onSubmit pour indiquer que le formulaire a été validé avec succès
       onSubmit()
     } else {

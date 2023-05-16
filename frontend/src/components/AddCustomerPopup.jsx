@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import { Grid } from '@mui/material'
 import { useState } from 'react'
 
+// Le composant de transition `Fade`
 const Fade = React.forwardRef(function Fade (props, ref) {
   const {
     children,
@@ -22,23 +23,29 @@ const Fade = React.forwardRef(function Fade (props, ref) {
     ownerState,
     ...other
   } = props
+
+  // Utilisation du hook `useSpring` pour définir les styles d'animation
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
     onStart: () => {
+      // Appel de la fonction `onEnter` lorsque l'animation démarre et que le composant devient visible
       if (open && onEnter) {
         onEnter(null, true)
       }
     },
     onRest: () => {
+      // Appel de la fonction `onExited` lorsque l'animation est terminée et que le composant devient invisible
       if (!open && onExited) {
         onExited(null, true)
       }
     }
   })
 
+  // Rendu du composant de transition avec les styles animés
   return (
     <animated.div ref={ref} style={style} {...other}>
+      {/* Clonage de l'élément enfant et passage de la fonction `onClick` en tant que prop */}
       {React.cloneElement(children, { onClick })}
     </animated.div>
   )

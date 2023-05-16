@@ -11,11 +11,16 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { Box, Collapse, IconButton, TableBody, Typography } from '@mui/material'
 
 function InvoicesListFalse () {
+  // État pour gérer l'ouverture/fermeture du collapsible
   const [open, setOpen] = React.useState(false)
+  // Obtention de la date actuelle
   const date = new Date()
+  // Réglage de la date en fonction de l'offset de jours (-13 jours)
   date.setDate(date.getDate() - 13)
+  // Création d'une nouvelle date avec un mois supplémentaire
   const datePlusUnMois = new Date(date)
   datePlusUnMois.setMonth(date.getMonth() + 1)
+  // Options pour le formatage de la date
   const options = { year: 'numeric', month: 'long', day: 'numeric' }
 
   return (

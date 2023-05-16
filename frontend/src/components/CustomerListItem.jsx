@@ -35,8 +35,6 @@ function Row (props) {
   const { row } = props
   const [open, setOpen] = React.useState(false)
 
-  // console.log(row)
-  // console.log('TEEEEEEEEEEEEEEEEEEEEEEE')
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>

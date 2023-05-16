@@ -4,36 +4,15 @@ import '../styles/FooterStyle.scss'
 function Footer () {
   return (
     <>
-      <footer className='footer'>
-        <div className='waves'>
-          <div className='wave' id='wave1' />
+      <footer className='footer'> {/* Balise footer avec la classe 'footer' */}
+        <div className='waves'> {/* Div avec la classe 'waves' */}
+          <div className='wave' id='wave1' /> {/* Div avec la classe 'wave' et l'ID 'wave1' */}
           <div className='wave' id='wave2' />
           <div className='wave' id='wave3' />
           <div className='wave' id='wave4' />
         </div>
-        <ul className='social-icon'>
-          <li className='social-icon__item'>
-            <a className='social-icon__link' href='#'>
-              <ion-icon name='logo-facebook' />
-            </a>
-          </li>
-          <li className='social-icon__item'>
-            <a className='social-icon__link' href='#'>
-              <ion-icon className='logo-twitter' />
-            </a>
-          </li>
-          <li className='social-icon__item'>
-            <a className='social-icon__link' href='#'>
-              <ion-icon className='logo-linkedin' />
-            </a>
-          </li>
-          <li className='social-icon__item'>
-            <a className='social-icon__link' href='#'>
-              <ion-icon name='logo-instagram' />
-            </a>
-          </li>
-        </ul>
-        <ul className='menu'>
+
+        <ul className='menu'> {/* Liste avec la classe 'menu' */}
           <li className='menu__item'>
             <a className='menu__link' href='/'>Accueil</a>
           </li>
@@ -44,17 +23,16 @@ function Footer () {
             <a className='menu__link' href='/invoice'>Facture</a>
           </li>
           <li className='menu__item'>
-            <a className='menu__link' href='#'>Team</a>
+            <a className='menu__link' href='/customer'>Client</a>
           </li>
           <li className='menu__item'>
             <a className='menu__link' href='#'>Contact</a>
           </li>
-
         </ul>
-        <p>&copy;2023 SOREAU BASTIEN | MyDigitalSchool</p>
+        <p>©2023 SOREAU BASTIEN | MyDigitalSchool</p> {/* Paragraphe avec le texte '©2023 SOREAU BASTIEN | MyDigitalSchool' */}
       </footer>
-      <script type='module' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js' />
-      <script nomodule src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js' />
+      <script type='module' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js' /> {/* Script externe */}
+      <script nomodule src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js' /> {/* Script externe */}
     </>
   )
 }
