@@ -1,0 +1,26 @@
+@import './mixins';
+@import './variables';
+
+
+.lg {
+  width: 800px;
+}
+
+@media screen and (max-width: 1199px) {
+  .lg {
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .lg {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .lg {
+    width: 100%;
+    max-width: 300px;
+  }
+}

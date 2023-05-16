@@ -22,6 +22,7 @@ const createProduct = async (product) => {
     comment: product.comment,
     initPrix: product.initPrix,
     prix: product.prix,
+    quantity: product.quantity,
     unit: product.unit,
     taxe: product.taxe,
     users: product.users

@@ -7,9 +7,9 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { useAuth } from '../contexts/AuthContext'
 
-function InvoicesList ({ invoices }) {
+function InvoicesList ({ invoices, customers }) {
+  // console.log(customers)
   return (
     <div className='list-container'>
       <TableContainer component={Paper}>
@@ -24,7 +24,7 @@ function InvoicesList ({ invoices }) {
               <TableCell align='right'>TOTAL TTC</TableCell>
             </TableRow>
           </TableHead>
-          <InvoiceListeItem key={invoices.id} invoices={invoices} />
+          <InvoiceListeItem key={invoices.id} customers={customers} invoices={invoices} />
         </Table>
       </TableContainer>
     </div>

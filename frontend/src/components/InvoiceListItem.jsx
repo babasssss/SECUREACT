@@ -12,26 +12,14 @@ import Typography from '@mui/material/Typography'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
-function createData (name, calories, fat, carbs, protein, price) {
+function createData (name, numInvoice, date, maturity, protein, price) {
   return {
     name,
-    calories,
-    fat,
-    carbs,
+    numInvoice,
+    date,
+    maturity,
     protein,
-    price,
-    history: [
-      {
-        date: '2020-01-05',
-        customerId: '11091700',
-        amount: 3
-      },
-      {
-        date: '2020-01-02',
-        customerId: 'Anonymous',
-        amount: 1
-      }
-    ]
+    price
   }
 }
 
@@ -54,9 +42,9 @@ function Row (props) {
         <TableCell component='th' scope='row'>
           {row.name}
         </TableCell>
-        <TableCell align='right'>{row.calories}</TableCell>
-        <TableCell align='right'>{row.fat}</TableCell>
-        <TableCell align='right'>{row.carbs}</TableCell>
+        <TableCell align='right'>{row.numInvoice}</TableCell>
+        <TableCell align='right'>{row.date}</TableCell>
+        <TableCell align='right'>{row.maturity}</TableCell>
         <TableCell align='right'>{row.protein}</TableCell>
       </TableRow>
       <TableRow>
@@ -64,30 +52,23 @@ function Row (props) {
           <Collapse in={open} timeout='auto' unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant='h6' gutterBottom component='div'>
-                History
+                Produits
               </Typography>
               <Table size='small' aria-label='purchases'>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align='right'>Amount</TableCell>
-                    <TableCell align='right'>Total price ($)</TableCell>
+                    <TableCell align='left'>NOM</TableCell>
+                    <TableCell>DESCRIPTION</TableCell>
+                    <TableCell>QUANTITE</TableCell>
+                    <TableCell>UNITE</TableCell>
+                    <TableCell>PRIX (€)</TableCell>
+                    <TableCell>TYPE DE PRIX</TableCell>
+                    <TableCell>TVA</TableCell>
+                    <TableCell>MONTANT</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component='th' scope='row'>
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align='right'>{historyRow.amount}</TableCell>
-                      <TableCell align='right'>
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
-                    </TableRow>
-                  ))}
+                  <TableCell align='right'>{row.date}</TableCell>
                 </TableBody>
               </Table>
             </Box>
@@ -98,27 +79,21 @@ function Row (props) {
   )
 }
 
-Row.propTypes = {
-  row: PropTypes.shape({
-    calories: PropTypes.number.isRequired,
-    carbs: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired
-      })
-    ).isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    protein: PropTypes.number.isRequired
-  }).isRequired
-}
+function InvoicesList ({ invoices, customers }) {
+  console.log(customers)
 
-function InvoicesList ({ invoices }) {
   const rows = invoices.map((invoice) => {
-    return createData('Frozen yoghurt', invoice.numInvoice, invoice.date.substring(0, 10), invoice.maturity.substring(0, 10), 4.0, 3.99)
+    const customer = customers.find((c) => c.id === invoice.customerId)
+    const productName = customer ? `${customer.firstName} ${customer.lastName}` : ''
+
+    return createData(
+      productName,
+      invoice.numInvoice,
+      invoice.date.substring(0, 10),
+      invoice.maturity.substring(0, 10),
+      4.0,
+      3.99
+    )
   })
 
   return (

@@ -88,6 +88,28 @@ const createCustomer = async (credentials, id) => {
   }
 }
 
+const updateCustomer = async (credentials, id) => {
+  try {
+    const _data = {
+      firstName: credentials.firstName,
+      lastName: credentials.lastName,
+      email: credentials.email,
+      phone: credentials.phone,
+      customerType: credentials.customerType,
+      address: {
+        street: credentials.street,
+        postalCode: credentials.postalCode,
+        city: credentials.city,
+        country: credentials.country
+      }
+    }
+    const response = await api.patch(`/customers/${id}`, _data)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const deleteCustomer = async (idCustomer, idUser) => {
   try {
     // console.log(idCustomer)
@@ -100,6 +122,19 @@ const deleteCustomer = async (idCustomer, idUser) => {
   }
 }
 
+/**
+ * Produit
+ */
+const getProduct = async (id) => {
+  try {
+    const response = await api.delete(`/customers/${id}?populate=*`)
+    // console.log(response.data)
+    return response
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export {
   login,
   register,
@@ -107,5 +142,7 @@ export {
   getInvoice,
   getCustomer,
   createCustomer,
-  deleteCustomer
+  deleteCustomer,
+  updateCustomer,
+  getProduct
 }

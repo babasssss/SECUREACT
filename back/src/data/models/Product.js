@@ -16,6 +16,9 @@ const productSchema = new Schema({
   prix: {
     type: String
   },
+  quantity: {
+    type: Number
+  },
   unit: {
     type: Schema.Types.ObjectId,
     ref: 'units'
