@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TextInput from './TextInput'
 import '../styles/CustomerForm.scss'
-import { createCustomer, getCustomer } from '../services/Api'
+import { createCustomer } from '../services/Api'
 import { MenuItem } from '@mui/material'
 import { useAuth } from '../contexts/AuthContext'
 import SubmitButtonPoppup from './SubmitButtonPopup'
@@ -32,9 +32,10 @@ function CustomerForm ({ onSubmit, getData }) {
     event.preventDefault()
     if (credentials.firstName && credentials.lastName && credentials.customerType && credentials.customerType && credentials.email && credentials.street && credentials.city && credentials.country && credentials.postalCode) {
       console.log(credentials)
-      const result = await createCustomer(credentials, user._id)
+      // const result = await createCustomer(credentials, user._id)
+      // console.log(result)
+      await createCustomer(credentials, user._id)
       getData()
-      console.log(result)
       // Appelez la fonction onSubmit pour indiquer que le formulaire a été validé avec succès
       onSubmit()
     } else {

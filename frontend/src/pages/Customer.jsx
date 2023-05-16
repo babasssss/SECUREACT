@@ -5,7 +5,7 @@ import '../styles/Customer.scss'
 import { getCustomer } from '../services/Api'
 import CustomersList from '../components/CustomersList'
 import Grid from '@mui/material/Grid'
-import AddCustomerPopup from '../components/CustomerPopup'
+import AddCustomerPopup from '../components/AddCustomerPopup'
 
 function Customer () {
   const [customer, setCustomers] = useState()

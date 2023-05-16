@@ -27,7 +27,7 @@ function Router () {
         <Route index path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
         <Route path='/auth' element={<Auth />} />
-        <Route path='/invoice' element={<Navigate to='/' replace />} />
+        <Route path='/invoice' element={<Invoice />} />
         <Route path='/profil' element={<Navigate to='/' replace />} />
         <Route path='/customer' element={<Navigate to='/' replace />} />
       </Routes>

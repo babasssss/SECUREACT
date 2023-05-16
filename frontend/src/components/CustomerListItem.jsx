@@ -54,7 +54,7 @@ function Row (props) {
         </TableCell>
         <TableCell align='center'>{row.phone}</TableCell>
         <TableCell align='center'>{row.email}</TableCell>
-        <TableCell align='center'>{row.customerType}</TableCell>
+        <TableCell align='center'>{row.customerType === 0 ? 'Particulier' : 'Professionnel'}</TableCell>
 
         {/* Composant pour mettre à jour le client */}
         <CustomerUpdate customer={row} getData={row.getData} />
@@ -103,13 +103,12 @@ function Row (props) {
 
 function CustomerListItem ({ customers, getData }) {
   const rows = customers.map((customer) => {
-    const customerTypeString = customer.customerType === 0 ? 'Particulier' : 'Professionnel'
     return createData(
       customer.firstName,
       customer.lastName,
       customer.phone,
       customer.email,
-      customerTypeString,
+      customer.customerType,
       customer.address,
       customer.createdAt,
       customer.updatedAt,

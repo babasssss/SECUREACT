@@ -14,7 +14,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone'
 import PersonIcon from '@mui/icons-material/Person'
 
 function CustomerFormDelete ({ customer, getData }) {
-  console.log(customer)
+  // console.log(customer)
   const [open, setOpen] = React.useState(false)
   const { state: { user } } = useAuth()
 
@@ -28,9 +28,10 @@ function CustomerFormDelete ({ customer, getData }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const result = await deleteCustomer(customer.id, user._id)
+    // const result = await deleteCustomer(customer.id, user._id)
+    // console.log(result)
+    await deleteCustomer(customer.id, user._id)
     getData()
-    console.log(result)
   }
 
   return (

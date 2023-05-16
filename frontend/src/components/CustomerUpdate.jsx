@@ -1,25 +1,25 @@
 import * as React from 'react'
 
 import EditNoteIcon from '@mui/icons-material/EditNote'
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TableCell } from '@mui/material'
+import { Button, Dialog, DialogContent, DialogContentText, DialogTitle, TableCell } from '@mui/material'
 import CustomerFormUpdate from './CustomerFormUpdate'
+import { useState } from 'react'
 
 function CustomerUpdate ({ customer, getData }) {
-  console.log(customer)
+  // console.log(customer)
   const [open, setOpen] = React.useState(false)
+  const [isFormValid, setIsFormValid] = useState(false)
 
   const handleClickOpen = () => {
+    setIsFormValid(false)
     setOpen(true)
   }
 
   const handleClose = () => {
     setOpen(false)
   }
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    getData()
-    console.log('result')
+  const handleFormSubmit = () => {
+    setIsFormValid(true)
   }
 
   return (
@@ -33,18 +33,19 @@ function CustomerUpdate ({ customer, getData }) {
           <DialogTitle>MODIFICATION DU CLIENT</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Vous êtes en train de changer les informations du client suivant :<hr /><br />
-              <CustomerFormUpdate customer={customer} />
+              {isFormValid
+                ? (
+                  <><p>Les informations du client ont été modifiées avec succès !</p><hr /></>
+                  )
+                : (
+                  <>
+                    <p>Vous êtes en train de changer les informations du client suivant :</p>
+                    <CustomerFormUpdate onSubmit={handleFormSubmit} getData={getData} customer={customer} />
+                  </>
+                  )}
             </DialogContentText>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Annuler</Button>
-            <form noValidate onSubmit={handleSubmit}>
-              <Button type='submit' onClick={handleClose}>Confirmer</Button>
-            </form>
-          </DialogActions>
         </Dialog>
-
       </TableCell>
     </>
   )
