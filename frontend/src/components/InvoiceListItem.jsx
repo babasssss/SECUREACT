@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PropTypes from 'prop-types'
 import Box from '@mui/material/Box'
 import Collapse from '@mui/material/Collapse'
 import IconButton from '@mui/material/IconButton'
@@ -12,14 +11,12 @@ import Typography from '@mui/material/Typography'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
-function createData (name, numInvoice, date, maturity, protein, price) {
+function createData (name, numInvoice, date, maturity) {
   return {
-    name,
-    numInvoice,
-    date,
-    maturity,
-    protein,
-    price
+    name, // Nom du client
+    numInvoice, // Numéro de la facture
+    date, // Date de création
+    maturity // Date d'échéance
   }
 }
 
@@ -45,7 +42,7 @@ function Row (props) {
         <TableCell align='right'>{row.numInvoice}</TableCell>
         <TableCell align='right'>{row.date}</TableCell>
         <TableCell align='right'>{row.maturity}</TableCell>
-        <TableCell align='right'>{row.protein}</TableCell>
+        <TableCell align='right'>{row.numInvoice}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -90,9 +87,7 @@ function InvoicesList ({ invoices, customers }) {
       productName,
       invoice.numInvoice,
       invoice.date.substring(0, 10),
-      invoice.maturity.substring(0, 10),
-      4.0,
-      3.99
+      invoice.maturity.substring(0, 10)
     )
   })
 

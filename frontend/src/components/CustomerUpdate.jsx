@@ -6,7 +6,6 @@ import CustomerFormUpdate from './CustomerFormUpdate'
 import { useState } from 'react'
 
 function CustomerUpdate ({ customer, getData }) {
-  // console.log(customer)
   const [open, setOpen] = React.useState(false)
   const [isFormValid, setIsFormValid] = useState(false)
 

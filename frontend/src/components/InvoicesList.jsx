@@ -9,7 +9,6 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 
 function InvoicesList ({ invoices, customers }) {
-  // console.log(customers)
   return (
     <div className='list-container'>
       <TableContainer component={Paper}>

@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import TextInput from './TextInput'
 import SubmitButton from './SubmitButton'
 import '../styles/Form_Auth.scss'
 import { useAuth } from '../contexts/AuthContext'
 
 function UpdateProfilForm ({ onSubmit }) {
+  // Utilisation du contexte Auth pour récupérer les informations de l'utilisateur connecté
   const { state: { user } } = useAuth()
+
+  // État local pour stocker les informations du formulaire
   const [credentials, setCredentials] = useState({
     email: user.email,
     lastName: user.lastName,
@@ -13,6 +16,7 @@ function UpdateProfilForm ({ onSubmit }) {
     phone: user.phone
   })
 
+  // Gestionnaire de changement pour mettre à jour les informations du formulaire
   const handleChange = (event) => {
     event.preventDefault()
     const inputName = event.target.name
@@ -22,10 +26,13 @@ function UpdateProfilForm ({ onSubmit }) {
       [inputName]: inputValue
     })
   }
+
+  // Gestionnaire de soumission du formulaire
   const handleSubmit = (event) => {
     event.preventDefault()
-    onSubmit(credentials)
+    onSubmit(credentials) // Appel de la fonction de soumission fournie en prop
   }
+
   return (
     <>
       <form noValidate onSubmit={handleSubmit}>

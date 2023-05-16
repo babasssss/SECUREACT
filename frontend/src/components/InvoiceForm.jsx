@@ -25,8 +25,7 @@ function InvoiceForm ({ onSubmit, getData, invoices, customers }) {
     event.preventDefault()
     if (credentials.firstName && credentials.lastName && credentials.customerType && credentials.customerType && credentials.email && credentials.street && credentials.city && credentials.country && credentials.postalCode) {
       console.log(credentials)
-      // const result = await createCustomer(credentials, user._id)
-      // console.log(result)
+
       await createCustomer(credentials, user._id)
       getData()
       // Appelez la fonction onSubmit pour indiquer que le formulaire a été validé avec succès
